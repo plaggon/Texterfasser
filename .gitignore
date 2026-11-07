@@ -1,0 +1,11 @@
+# Build-Verzeichnisse ausschließen
+build/
+*build*/
+.qt/
+# CMake temporäre Dateien ausschließen
+CMakeCache.txt
+CMakeFiles/
+CMakeScripts/
+*.cmake
+*.user
+# .vscode wird HIER ABSICHTLICH NICHT MEHR AUFGELISTET (damit es mitgesendet wird)

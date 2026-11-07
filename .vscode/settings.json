@@ -1,0 +1,9 @@
+{"terminal.integrated.profiles.windows": {
+  "Visual C Dev Prompt (x64)": {
+    "path": "cmd.exe",
+    "args": [
+      "/k",
+      "C:\\Program Files (x86)\\Microsoft Visual Studio\\2019\\Community\\Common7\\Tools\\VsDevCmd.bat",
+    ],
+  }
+}}

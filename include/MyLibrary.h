@@ -1,0 +1,1 @@
+int getANumber(int input);
