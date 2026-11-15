@@ -1,10 +1,7 @@
-#include <iostream>
-#include <QtCore/QApplicationStatic>
+#include <stdio.h>
+#include <string.h>
 
 int main() {
-
-    int num;
-    std::cin >> num;
-    std::cout << "hello world";
+    printf("Hello World");
     return 0;
 }
