@@ -11,6 +11,8 @@ set(CMAKE_CXX_STANDARD 17)
 #specify sources to be all files in src
 file(GLOB_RECURSE MY_SOURCES CONFIGURE_DEPENDS ${CMAKE_CURRENT_SOURCE_DIR}/src/*.cpp)
 
+set(CMAKE_AUTOMOC ON)
+
 #specify the executable project
 add_executable(Texterfasser "${MY_SOURCES}")
 
@@ -27,7 +29,7 @@ find_package(Qt6 COMPONENTS Core Gui Widgets REQUIRED)
 include($ENV{VCPKG_ROOT}/scripts/buildsystems/vcpkg.cmake)
 
 find_package(leptonica)
-find_package(tesseract)
+find_package(Tesseract)
 
 
 target_include_directories(Texterfasser PRIVATE "${CMAKE_CURRENT_SOURCE_DIR}/include")

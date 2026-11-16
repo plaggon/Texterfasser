@@ -1,7 +1,13 @@
-#include "tesseract/baseapi.h"
+#include "MainWindow.h"
+#include "QtWidgets/QApplication"
 #include <stdio.h>
 
-int main() {
+int main(int argc, char *argv[]) {
+    QApplication app(argc, argv);
+
+    MainWindow window;
+    window.show();
     printf("Hello World");
-    return 0;
+
+    return app.exec();
 }
