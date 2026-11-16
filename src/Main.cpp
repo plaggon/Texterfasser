@@ -7,7 +7,6 @@ int main(int argc, char *argv[]) {
 
     MainWindow window;
     window.show();
-    printf("Hello World");
 
     return app.exec();
 }

@@ -1,4 +1,5 @@
 #include "MainWindow.h"
+#include "FileSearchPopup.h"
 #include <QtWidgets/QLabel>
 #include <QtWidgets/QMenu>
 #include <QtWidgets/QMenuBar>
@@ -7,26 +8,33 @@
 #include <QtWidgets/QVBoxLayout>
 #include <QtWidgets/QWidget>
 
-MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent) {
+MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent){
     setWindowTitle("Texterfasser");
     resize(600, 400);
 
     QWidget *central = new QWidget(this);
     QVBoxLayout *layout = new QVBoxLayout(central);
 
-    QLabel *label = new QLabel("Welcome to Texterfasser!", central);
-    QPushButton *button = new QPushButton("Quit", central);
-
-    layout->addWidget(label);
-    layout->addWidget(button);
     setCentralWidget(central);
 
     QMenu *fileMenu = menuBar()->addMenu("&File");
-    fileMenu->addAction("E&xit", this, &QWidget::close);
+    QAction *fopenButton = new QAction("Open file", this);
+    fileMenu->addAction("Exit", this, &QWidget::close);
+    fileMenu->addAction(fopenButton);
 
-    statusBar()->showMessage("Ready");
+    connect(fopenButton, &QAction::triggered, this, &MainWindow::openFileExplorer);
 
-    connect(button, &QPushButton::clicked, this, &QWidget::close);
 }
+
+MainWindow::~MainWindow() {
+    
+}
+
+void MainWindow::openFileExplorer() {
+    FileSearchPopup *popUp = new FileSearchPopup(this);
+    popUp->setAttribute(Qt::WA_DeleteOnClose);
+    popUp->show();
+}
+
 
 
