@@ -12,13 +12,14 @@ set(CMAKE_CXX_STANDARD 17)
 file(GLOB_RECURSE MY_SOURCES CONFIGURE_DEPENDS ${CMAKE_CURRENT_SOURCE_DIR}/src/*.cpp)
 
 set(CMAKE_AUTOMOC ON)
+set(CMAKE_PROJECT_NAME Texterfasser)
 
 #specify the executable project
 add_executable(Texterfasser "${MY_SOURCES}")
 
 
 #define the RESOURCES_PATH macro to find resources easily when using CMAKE, (comment when sending to others)
-target_compile_definitions("${CMAKE_PROJECT_NAME}" PUBLIC RESOURCES_PATH="${CMAKE_CURRENT_SOURCE_DIR}/resources/*")
+target_compile_definitions(Texterfasser PRIVATE RESOURCES_PATH="${CMAKE_CURRENT_SOURCE_DIR}/resources/*")
 
 #same thing as above but for usage without CMAKE, (uncomment when needed)
 #target_compile_definitions("${CMAKE_PROJECT_NAME}" PUBLIC RESOURCES_PATH="./resources/*")

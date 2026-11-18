@@ -1,5 +1,6 @@
 #include "MainWindow.h"
-#include "FileSearchPopup.h"
+#include "EditorWindow.h"
+#include "QtWidgets/QFileDialog"
 #include <QtWidgets/QLabel>
 #include <QtWidgets/QMenu>
 #include <QtWidgets/QMenuBar>
@@ -7,13 +8,17 @@
 #include <QtWidgets/QStatusBar>
 #include <QtWidgets/QVBoxLayout>
 #include <QtWidgets/QWidget>
+#include <string>
+#include <vector>
+#include <QDir>
+#include <QUrl>
+#include <QList>
 
 MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent){
     setWindowTitle("Texterfasser");
     resize(600, 400);
 
     QWidget *central = new QWidget(this);
-    QVBoxLayout *layout = new QVBoxLayout(central);
 
     setCentralWidget(central);
 
@@ -31,9 +36,21 @@ MainWindow::~MainWindow() {
 }
 
 void MainWindow::openFileExplorer() {
-    FileSearchPopup *popUp = new FileSearchPopup(this);
-    popUp->setAttribute(Qt::WA_DeleteOnClose);
-    popUp->show();
+
+    QFileDialog dialog(this);
+    QList<QUrl> selected_files;
+
+    dialog.setNameFilter(tr("Images (*.png *.jpg)"));
+    dialog.setAcceptMode(QFileDialog::AcceptOpen);
+    dialog.setFileMode(QFileDialog::AnyFile);
+    dialog.setDirectory(QDir::homePath());
+    dialog.exec();
+
+    selected_files = dialog.selectedUrls();
+
+    EditorWindow *file_editor = new EditorWindow(this, &selected_files[0]);
+    file_editor->show();
+
 }
 
 
